@@ -5,7 +5,7 @@
 | Numéro | Description                                                                                                        | Importance |
 |--------|--------------------------------------------------------------------------------------------------------------------|------------|
 | 1      | En tant qu'utilisateur je peux changer de direction                                                                | 1          |
-| 4      | En tant qu'utilisateur je peux crevax en percutant un mur sans être en boost                                       | 2          |
+| 4      | En tant qu'utilisateur je peux mourir en percutant un mur sans être en boost                                       | 2          |
 | 6      | En tant qu'utilisateur je peux gagner si je suis le seul survivant                                                 | 3          |
 | 7      | En tant qu'utilisateur je peux gagner si je suis celui avec le plus de kills à la fin du timer                     | 4          |
 | 8      | En tant qu'utilisateur je peux gagner si je gagne la mort subite contre l'adversaire qui a autant de kills que moi | 5          |
