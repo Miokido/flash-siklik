@@ -45,19 +45,19 @@ def test(fnToTest:Callable[[],Any]):
 def tests(classToTest):
     """
     Run all methods of a class decorated 
-    with @tests decorator as soon as test()
+    with @server decorator as soon as test()
     method is called from this class.
 
     # Sample
     ```python
-    @tests
+    @server
     class ManyTestsToPerform:
         def test1_something_first():
             ...
         def test2_this_then():
             ...
 
-    # Launching tests 🚀
+    # Launching server 🚀
     ManyTestsToPerform().test()
     ```
     """
