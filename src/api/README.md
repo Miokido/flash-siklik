@@ -1,6 +1,8 @@
 # Flash Siklik
 FLash Siklik est un jeu multijoueur inspiré de Tron utilisant les serveurs Pytactx.
 
+![](../../res/flash.png)
+
 ## 🎲 Règles du jeu 
 Chaque joueur contrôle une moto laissant une trainé de couleur formant un mur derrière elle.
 Un joueur est eliminé lorsqu'il percute un mur. Une partie dure X minute(s).
@@ -27,9 +29,13 @@ Une phase mort subite est déclanchée si plusieurs joueurs ayant le même nombr
 </ul>
 </div>
 
-## ✅ Pré-requis
-- Un ordinateur connecté à internet avec python 3.10 d'installé
-- Avoir un accès à un serveur privé play.jusdeliens.com
+<div id="preRequis">
+<h2>✅ Pré-requis</h2>
+<ul>
+    <li>Un ordinateur connecté à internet avec python 3.10 d'installé</li>
+    <li>Avoir un accès à un serveur privé play.jusdeliens.com</li>
+</ul>
+</div>
 
 ## ⚙️ Installation 
 Execution du script d'installation fourni sur la racine du projet.
