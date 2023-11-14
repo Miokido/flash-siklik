@@ -1,0 +1,75 @@
+{
+  "arenaRules": {
+    "gridColumns": 50,
+    "gridRows": 50,
+    "bgImg": "../res/flash.png",
+    "bgColor": [0, 0, 0, 1],
+    "mapFriction": [0.0, 0.0, 0.0, 1.0],
+    "mapImgs": ["", "rgba(255,55,223, 1)", "rgba(0, 125, 153, 1)", ""],
+    "dtFire": [300, 450],
+    "hitFire": [0, 100],
+    "profiles": ["default", "biker", "referee"],
+    "pIcons": ["", "🖌️", "👀"],
+    "pImgs": ["ova.svg", "ova.svg", "ball.svg"],
+    "range": [3, 3, 0],
+    "dtDir": [300, 300, 10],
+    "dtMove": [300, 450, 10],
+    "weapon": [0, 0, 1],
+    "fxFire": [false, false, false],
+    "hitCollision": [10, 10, 0],
+    "dxMax": [3, 3, 100],
+    "dyMax": [3, 3, 100],
+    "lifeIni": [1, 1, 0],
+    "ammoIni": [0, 0, 0],
+    "invisible": [false, false, true],
+    "invincible": [false, false, true],
+    "infiniteAmmo": [false, false, true],
+    "collision": [true, true, false],
+    "teamNb": 0,
+    "spawnArena": { "x": [13, 3, 23], "y": [6, 3, 9], "r": [10, 3, 3] }
+  },
+  "playersRules": {
+    "🍉 joueur1": {
+      "color": [190, 0, 160],
+      "team": 1,
+      "x": 1,
+      "y": 3,
+      "dir": 0
+    },
+    "🍉 joueur3": {
+      "color": [190, 0, 160],
+      "team": 1,
+      "x": 2,
+      "y": 2,
+      "dir": 0
+    },
+    "🍉 joueur5": {
+      "color": [190, 0, 160],
+      "team": 1,
+      "x": 3,
+      "y": 1,
+      "dir": 0
+    },
+    "🫐 joueur2": {
+      "color": [0, 125, 153],
+      "team": 2,
+      "x": 24,
+      "y": 8,
+      "dir": 2
+    },
+    "🫐 joueur4": {
+      "color": [0, 125, 153],
+      "team": 2,
+      "x": 23,
+      "y": 9,
+      "dir": 2
+    },
+    "🫐 joueur6": {
+      "color": [0, 125, 153],
+      "team": 2,
+      "x": 22,
+      "y": 10,
+      "dir": 2
+    }
+  }
+}
