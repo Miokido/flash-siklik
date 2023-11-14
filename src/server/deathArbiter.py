@@ -21,7 +21,7 @@ class IDeathArbiter:
         """
         pass
 
-    def checkIsDeathElseKill(self, vehicle: Vehicle):
+    def checkIsDeathElseKill(self, vehicle: Vehicle, map:[[],[]]):
         """
             this method checks if the vehicle is dead and kills it if it is not
             :param vehicle: Vehicle
@@ -49,11 +49,12 @@ class DeathArbiter(IDeathArbiter):
         """
         vehicle.life = 0
 
-    def checkIsDeathElseKill(self, vehicle: Vehicle):
+    def checkIsDeathElseKill(self, vehicle: Vehicle, map:[[],[]]):
         """
             this method checks if the vehicle is dead and kills it if it is not
             :param vehicle: Vehicle
             :return: void
         """
         if self.isDead(vehicle) is False:
-            self.killVehicle(vehicle)
+            if map[vehicle.x][vehicle.y] >= 2:
+                self.killVehicle(vehicle)
