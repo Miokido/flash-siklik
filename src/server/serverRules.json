@@ -27,49 +27,5 @@
     "collision": [true, true, false],
     "teamNb": 0,
     "spawnArena": { "x": [13, 3, 23], "y": [6, 3, 9], "r": [10, 3, 3] }
-  },
-  "playersRules": {
-    "🍉 joueur1": {
-      "color": [190, 0, 160],
-      "team": 1,
-      "x": 1,
-      "y": 3,
-      "dir": 0
-    },
-    "🍉 joueur3": {
-      "color": [190, 0, 160],
-      "team": 1,
-      "x": 2,
-      "y": 2,
-      "dir": 0
-    },
-    "🍉 joueur5": {
-      "color": [190, 0, 160],
-      "team": 1,
-      "x": 3,
-      "y": 1,
-      "dir": 0
-    },
-    "🫐 joueur2": {
-      "color": [0, 125, 153],
-      "team": 2,
-      "x": 24,
-      "y": 8,
-      "dir": 2
-    },
-    "🫐 joueur4": {
-      "color": [0, 125, 153],
-      "team": 2,
-      "x": 23,
-      "y": 9,
-      "dir": 2
-    },
-    "🫐 joueur6": {
-      "color": [0, 125, 153],
-      "team": 2,
-      "x": 22,
-      "y": 10,
-      "dir": 2
-    }
   }
 }
