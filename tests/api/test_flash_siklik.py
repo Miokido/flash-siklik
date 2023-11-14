@@ -1,14 +1,21 @@
 import pytest
 
+import os
+import sys
+__workdir__ = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+__j2ldir__ = os.path.join(__workdir__, "src", "api")
+sys.path.append(__workdir__)
+sys.path.append(__j2ldir__)
+
 from src.api.fs.Vehicle import Vehicle
 
 
 class TestFlashSiklikApi(object):
+
     """
         test de la classe vehicule
     """
-
-    def testVehicule(self):
+    def test_vehicule(self):
         vehiculeTest = Vehicle(1, 1, "test", "test", "test", 1)
 
         assert vehiculeTest.turn(-1) == False
