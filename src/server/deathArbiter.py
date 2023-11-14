@@ -23,7 +23,7 @@ class IDeathArbiter:
 
     def checkIsDeathElseKill(self, vehicle: Vehicle):
         """
-            this method checks if the vehicle is dead and kills it if it is
+            this method checks if the vehicle is dead and kills it if it is not
             :param vehicle: Vehicle
             :return: void
         """
@@ -51,7 +51,7 @@ class DeathArbiter(IDeathArbiter):
 
     def checkIsDeathElseKill(self, vehicle: Vehicle):
         """
-            this method checks if the vehicle is dead and kills it if it is
+            this method checks if the vehicle is dead and kills it if it is not
             :param vehicle: Vehicle
             :return: void
         """
