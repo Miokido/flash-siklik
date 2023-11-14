@@ -17,8 +17,8 @@ class TestFlashSiklikApi(unittest.TestCase):
         self.assertTrue(vehiculeTest.turn(3),True)
         self.assertTrue(vehiculeTest.turn(4),False)
 
-        self.assertTrue(vehiculeTest.boost(True),True)
-        self.assertTrue(vehiculeTest.boost(False),True)
+        self.assertTrue(vehiculeTest.boost(True),None)
+        self.assertTrue(vehiculeTest.boost(False),None)
 
         self.assertTrue(vehiculeTest.useItem(-1),False)
         self.assertTrue(vehiculeTest.useItem(0),True)
@@ -27,7 +27,7 @@ class TestFlashSiklikApi(unittest.TestCase):
         self.assertTrue(vehiculeTest.useItem(3),True)
         self.assertTrue(vehiculeTest.useItem(4),False)
 
-        self.assertTrue(vehiculeTest.update(),True)
+        self.assertTrue(vehiculeTest.update(),None)
 
         self.assertTrue(vehiculeTest.getItems(),None)
         self.assertTrue(vehiculeTest.getUsedItems(),None)
