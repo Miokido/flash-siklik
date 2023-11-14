@@ -1,30 +1,30 @@
-from src.server.j2l.pytactx.agent import Agent
+from src.api.fs import Vehicle
 
 
 class IDeathArbiter:
     def __init__(self):
         pass
 
-    def isDead(self, agent: Agent):
+    def isDead(self, vehicle: Vehicle):
         """
-            this method returns true if the agent is dead
-            :param agent: Agent
+            this method returns true if the vehicle is dead
+            :param vehicle: Vehicle
             :return: bool
         """
         pass
 
-    def killAgent(self, agent: Agent):
+    def killVehicle(self, vehicle: Vehicle):
         """
-            this method kills the agent
-            :param agent: Agent
+            this method kills the vehicle
+            :param vehicle: Vehicle
             :return: void
         """
         pass
 
-    def checkIsDeathElseKill(self, agent: Agent):
+    def checkIsDeathElseKill(self, vehicle: Vehicle):
         """
-            this method checks if the agent is dead and kills it if it is
-            :param agent: Agent
+            this method checks if the vehicle is dead and kills it if it is
+            :param vehicle: Vehicle
             :return: void
         """
         pass
@@ -33,27 +33,27 @@ class DeathArbiter(IDeathArbiter):
     def __init__(self):
         super().__init__()
 
-    def isDead(self, agent: Agent):
+    def isDead(self, vehicle: Vehicle):
         """
-            this method returns true if the agent is dead
-            :param agent: Agent
+            this method returns true if the vehicle is dead
+            :param vehicle: Vehicle
             :return: bool
         """
-        return agent.life <= 0
+        return vehicle.life <= 0
 
-    def killAgent(self, agent: Agent):
+    def killVehicle(self, vehicle: Vehicle):
         """
-            this method kills the agent
-            :param agent: Agent
+            this method kills the vehicle
+            :param vehicle: Vehicle
             :return: void
         """
-        agent.life = 0
+        vehicle.life = 0
 
-    def checkIsDeathElseKill(self, agent: Agent):
+    def checkIsDeathElseKill(self, vehicle: Vehicle):
         """
-            this method checks if the agent is dead and kills it if it is
-            :param agent: Agent
+            this method checks if the vehicle is dead and kills it if it is
+            :param vehicle: Vehicle
             :return: void
         """
-        if self.isDead(agent) is False:
-            self.killAgent(agent)
+        if self.isDead(vehicle) is False:
+            self.killVehicle(vehicle)
