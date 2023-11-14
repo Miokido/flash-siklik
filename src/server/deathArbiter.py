@@ -21,7 +21,7 @@ class IDeathArbiter:
         """
         pass
 
-    def checkDeath(self, agent: Agent):
+    def checkIsDeathElseKill(self, agent: Agent):
         """
             this method checks if the agent is dead and kills it if it is
             :param agent: Agent
@@ -49,7 +49,7 @@ class DeathArbiter(IDeathArbiter):
         """
         agent.life = 0
 
-    def checkDeath(self, agent: Agent):
+    def checkIsDeathElseKill(self, agent: Agent):
         """
             this method checks if the agent is dead and kills it if it is
             :param agent: Agent
