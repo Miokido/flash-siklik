@@ -1,5 +1,8 @@
 import j2l.pytactx.agent as pytactx
 
+#with open(os.path.join(__fileDir__, 'serverRules.json')) as json_data:
+#serverRulesdict = json.load(json_data)
+
 
 class MainArbiter:
 
@@ -14,8 +17,7 @@ class MainArbiter:
   def ruleArena(self, key, value):
     self.__agent.ruleArena(key, value)
 
-  def createPlayers(self, rulesFile):
-    self.printInfoToArena("⌛ Création des joueurs ...")
+  def createPlayers(self):
     for player, playerAttributes in rulesFile["playersRules"].items():
       for attributeKey, attributeValue in playerAttributes.items():
         self.__pytactxAgent.rulePlayer(player, attributeKey, attributeValue)
