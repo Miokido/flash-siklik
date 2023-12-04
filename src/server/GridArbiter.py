@@ -9,7 +9,6 @@ playerRulesdict = dict()
 with open(os.path.join(__fileDir__, 'PlayerRules.json')) as json_data:
   playerRulesdict = json.load(json_data)
 
-
 class GridArbiter:
 
   def __init__(self):
@@ -19,6 +18,8 @@ class GridArbiter:
                                  password="demo",
                                  server="mqtt.jusdeliens.com",
                                  verbosity=2)
+    self.__agent.rulePlayer("invisible", True)
+    self.__agent.rulePlayer("invincible", True)
 
   def ruleArena(self, key, value):
     self.__agent.ruleArena(key, value)
@@ -29,7 +30,7 @@ class GridArbiter:
         self.__agent.rulePlayer(player, attributeKey, attributeValue)
 
   def update(self):
-    self.__agent.update()
+    self.initGrid()
 
   def getRange(self):
     return self.__agent.range
@@ -42,21 +43,16 @@ class GridArbiter:
       self.__agent.rulePlayer(player, 'life', 0)
       self.__agent.ruleArena('delPlayer', [player])
 
-
-def initGrid():
-  gridArbiter.clearPlayers()
-  gridArbiter.update()
-  time.sleep(0.3)
-  gridArbiter.ruleArena(
-    "bgImg",
-    "https://raw.githubusercontent.com/Miokido/flash-siklik/main/res/background_grid.png"
-  )
-  gridArbiter.ruleArena("gridColumns", 50)
-  gridArbiter.ruleArena("gridRows", 50)
-  gridArbiter.ruleArena("mapFriction", 0)
-  gridArbiter.createPlayers()
-
-
-gridArbiter = GridArbiter()
-initGrid()
-gridArbiter.update()
+  def initGrid(self):
+    self.clearPlayers()
+    self.__agent.update()
+    time.sleep(0.3)
+    self.ruleArena(
+      "bgImg",
+      "https://raw.githubusercontent.com/Miokido/flash-siklik/main/res/background_grid.png"
+    )
+    self.ruleArena("gridColumns", 50)
+    self.ruleArena("gridRows", 50)
+    self.ruleArena("mapFriction", 0)
+    self.createPlayers()
+    self.__agent.update()
