@@ -1,7 +1,12 @@
 import j2l.pytactx.agent as pytactx
+import os
+import json
 
-#with open(os.path.join(__fileDir__, 'serverRules.json')) as json_data:
-#serverRulesdict = json.load(json_data)
+__fileDir__ = "./"
+playerRulesdict = dict()
+
+with open(os.path.join(__fileDir__, 'PlayerRules.json')) as json_data:
+  playerRulesdict = json.load(json_data)
 
 
 class MainArbiter:
@@ -18,28 +23,30 @@ class MainArbiter:
     self.__agent.ruleArena(key, value)
 
   def createPlayers(self):
-    for player, playerAttributes in rulesFile["playersRules"].items():
+    for player, playerAttributes in playerRulesdict["players"].items():
       for attributeKey, attributeValue in playerAttributes.items():
-        self.__pytactxAgent.rulePlayer(player, attributeKey, attributeValue)
+        self._MainArbiter__agent.rulePlayer(player, attributeKey,
+                                            attributeValue)
+
+  def update(self):
+    self.__agent.update()
+
+  def getRange(self):
+    return self.__agent.range()
+
+  def clearPlayers(self):
+    ...
 
 
 def initGrid():
-  mainArbiter = MainArbiter()
+  mainArbiter.clearPlayers()
   mainArbiter.ruleArena("bgImg", "/path/")
   mainArbiter.ruleArena("gridColumns", 50)
   mainArbiter.ruleArena("gridRows", 50)
   mainArbiter.ruleArena("mapFriction", 0)
-  #mainArbiter.ruleArena("bgImg", "")
-
-  coords = [[13, 10], [26, 10], [39, 10], [13, 20], [39, 20], [13, 30],
-            [39, 30], [13, 40], [26, 40], [39, 40]]
-  for coord in coords:
-    ...
-    #self.__agent.pose(x, y, orientation)
-  #positionner joueur
-  #appeler ObjectArbiter
-  #appeler TimerArbiter
-  #mainArbiter.
+  mainArbiter.createPlayers()
 
 
+mainArbiter = MainArbiter()
 initGrid()
+mainArbiter.update()
