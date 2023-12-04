@@ -56,5 +56,5 @@ class DeathArbiter(IDeathArbiter):
             :return: void
         """
         if self.isDead(vehicle) is False:
-            if map[vehicle.x][vehicle.y] >= 2:
+            if (map[vehicle.x][vehicle.y] == 2 or map[vehicle.x][vehicle.y] == 1) and vehicle.isGhost() is False and vehicle.hasShield() is False:
                 self.killVehicle(vehicle)
