@@ -40,7 +40,7 @@ class MainArbiter:
 
 def initGrid():
   mainArbiter.clearPlayers()
-  mainArbiter.ruleArena("bgImg", "/path/")
+  mainArbiter.ruleArena("bgImg", "https://github.com/Miokido/flash-siklik/blob/4e36fc4a47e6788a63bd5436d6c550e0ee5d2dec/res/background_grid.png")
   mainArbiter.ruleArena("gridColumns", 50)
   mainArbiter.ruleArena("gridRows", 50)
   mainArbiter.ruleArena("mapFriction", 0)
