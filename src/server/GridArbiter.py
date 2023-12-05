@@ -42,8 +42,8 @@ class GridArbiter:
             self.__agent.ruleArena('delPlayer', [player])
 
     def clearMap(self):
-        for i in self.__agent.map:
-            for j in i:
+        for i in range(len(self.__agent.map)):
+            for j in range(len(self.__agent.map[i])):
                 self.__agent.map[i][j] = 0
 
     def initGrid(self):
