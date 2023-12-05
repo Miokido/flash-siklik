@@ -2,6 +2,7 @@ import j2l.pytactx.agent as pytactx
 import os
 import json
 import time
+from main import fsMap
 
 __fileDir__ = "./"
 playerRulesDict = dict()
@@ -24,9 +25,6 @@ class GridArbiter:
             for attributeKey, attributeValue in playerAttributes.items():
                 self.__agent.rulePlayer(player, attributeKey, attributeValue)
 
-    def update(self):
-        self.initGrid()
-
     def getRange(self):
         return self.__agent.range
 
@@ -39,14 +37,13 @@ class GridArbiter:
             self.__agent.ruleArena('delPlayer', [player])
 
     def getMap(self):
-        return self.__agent.map
+        return fsMap
 
     def clearMap(self):
-        map = self.__agent.map
-        for i in range(len(self.__agent.map)):
-            for j in range(len(self.__agent.map[i])):
-                map[i][j] = 0
-        self.__agent.ruleArena("map", map)
+        for i in range(len(fsMap)):
+            for j in range(len(fsMap[i])):
+                fsMap[i][j] = 0
+        self.__agent.ruleArena("map", fsMap)
 
     def initGrid(self):
         self.clearPlayers()
