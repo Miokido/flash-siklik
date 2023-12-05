@@ -62,5 +62,16 @@ class DeathArbiter(IDeathArbiter):
                     and vehicle.isGhost() is False and vehicle.hasShield() is False):
                 self.killVehicle(vehicle)
 
+    def killWeakAgents(self):
+        map = self.__agent.map
+        for agentName, agentAttributes in self.__agent.range.items():
+            agentX = agentAttributes["x"]
+            agentY = agentAttributes["y"]
+
+            if map[agentY][agentX] > 0:
+                self.__agent.rulePlayer(agentName, 'life', 0)
+                self.__agent.ruleArena('delPlayer', [agentName])
+
     def update(self):
+        self.killWeakAgents()
         self.__agent.update()

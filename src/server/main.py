@@ -2,11 +2,13 @@ import time
 
 from DeathArbiter import DeathArbiter
 from PlayerMovesArbiter import PlayerMovesReferee
-from GridArbiter import MainArbiter
+from GridArbiter import GridArbiter, initServerRules
 from TimerReferee import TimerReferee
 from cfg import *
 
-gridReferee = MainArbiter(gridRefereeAgent)
+initServerRules()
+
+gridReferee = GridArbiter(gridRefereeAgent)
 deathReferee = DeathArbiter(deathRefereeAgent)
 playerMovesReferee = PlayerMovesReferee(playerMovesRefereeAgent)
 timerReferee = TimerReferee(timerRefereeAgent)
