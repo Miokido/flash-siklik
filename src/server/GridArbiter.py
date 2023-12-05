@@ -6,11 +6,8 @@ import time
 __fileDir__ = "./"
 playerRulesDict = dict()
 
-
-def initServerRules():
-    global playerRulesDict
-    with open(os.path.join(__fileDir__, 'serverRules.json')) as json_data:
-        playerRulesDict = json.load(json_data)
+with open(os.path.join(__fileDir__, 'serverRules.json')) as json_data:
+    playerRulesDict = json.load(json_data)
 
 
 class GridArbiter:
@@ -41,10 +38,15 @@ class GridArbiter:
             self.__agent.rulePlayer(player, 'life', 0)
             self.__agent.ruleArena('delPlayer', [player])
 
+    def getMap(self):
+        return self.__agent.map
+
     def clearMap(self):
+        map = self.__agent.map
         for i in range(len(self.__agent.map)):
             for j in range(len(self.__agent.map[i])):
-                self.__agent.map[i][j] = 0
+                map[i][j] = 0
+        self.__agent.ruleArena("map", map)
 
     def initGrid(self):
         self.clearPlayers()

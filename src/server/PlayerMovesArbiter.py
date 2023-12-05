@@ -25,13 +25,14 @@ class PlayerMovesReferee(IPlayerMovesReferee):
             agentY = agentAttributes["y"]
 
             nextX = agentX + int(cos(agentDir * (pi / 2)))
-            nextY = agentY + int(sin(agentDir * (pi / 2)))
+            nextY = agentY - int(sin(agentDir * (pi / 2)))
 
-            fsMap[agentY][agentX] = 2
+            if 0 <= nextX <= 49 and 0 <= nextY <= 49:
+                fsMap[agentY][agentX] = 2
+                self.__agent.rulePlayer(agentName, "x", nextX)
+                self.__agent.rulePlayer(agentName, "y", nextY)
 
-            self.__agent.rulePlayer(agentName, "x", nextX)
-            self.__agent.rulePlayer(agentName, "y", nextY)
-            self.__agent.ruleArena("map", fsMap)
+        #self.__agent.ruleArena("map", fsMap)
 
     def update(self):
         self.updateAgentPosition()
