@@ -1,8 +1,6 @@
-import j2l.pytactx.agent as pytactx
 import os
 import json
 import time
-from main import fsMap
 
 __fileDir__ = "./"
 playerRulesDict = dict()
@@ -16,6 +14,8 @@ class GridArbiter:
         self.__agent = agent
         self.__agent.rulePlayer(agentId=agent.robotId, attributeName="invisible", attributeValue=True)
         self.__agent.rulePlayer(agentId=agent.robotId, attributeName="invincible", attributeValue=True)
+        self.__fsMap = None
+        self.__fsPlayers = None
 
     def ruleArena(self, key, value):
         self.__agent.ruleArena(key, value)
@@ -36,20 +36,24 @@ class GridArbiter:
             self.__agent.rulePlayer(player, 'life', 0)
             self.__agent.ruleArena('delPlayer', [player])
 
-    def getMap(self):
-        return fsMap
-
     def clearMap(self):
-        for i in range(len(fsMap)):
-            for j in range(len(fsMap[i])):
-                fsMap[i][j] = 0
-        self.__agent.ruleArena("map", fsMap)
+        if self.__fsMap is None:
+            return
+
+        for i in range(len(self.__fsMap)):
+            for j in range(len(self.__fsMap[i])):
+                self.__fsMap[i][j] = 0
+        self.__agent.ruleArena("map", self.__fsMap)
+
+    def setGameData(self, fsMap, fsPlayers):
+        self.__fsMap = fsMap
+        self.__fsPlayers = fsPlayers
 
     def initGrid(self):
         self.clearPlayers()
         self.clearMap()
         self.__agent.update()
-        time.sleep(0.3)
+
         self.ruleArena(
             "bgImg",
             "https://raw.githubusercontent.com/Miokido/flash-siklik/main/res/background_grid.png"
@@ -59,3 +63,5 @@ class GridArbiter:
         self.ruleArena("mapFriction", 0)
         self.createPlayers()
         self.__agent.update()
+
+        return self.__agent.map, self.__agent.range

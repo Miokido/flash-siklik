@@ -1,5 +1,3 @@
-from j2l.pytactx.agent import Agent
-from cfg import *
 from math import sin, cos, pi
 
 
@@ -10,6 +8,8 @@ class IPlayerMovesReferee:
 
 class PlayerMovesReferee(IPlayerMovesReferee):
     def __init__(self, agent):
+        self.__fsMap = None
+        self.__fsPlayers = None
         self.__agent = agent
         self.__agentsStreaks = {}
 
@@ -17,23 +17,27 @@ class PlayerMovesReferee(IPlayerMovesReferee):
         """
         Update player positions and place a wall behind them
         """
-        fsMap = self.__agent.map
+        for agentName, agentAttributes in self.__fsPlayers.items():
+            if agentAttributes["life"] > 0:
+                agentDir = agentAttributes["dir"]
+                agentX = agentAttributes["x"]
+                agentY = agentAttributes["y"]
 
-        for agentName, agentAttributes in self.__agent.range.items():
-            agentDir = agentAttributes["dir"]
-            agentX = agentAttributes["x"]
-            agentY = agentAttributes["y"]
+                nextX = agentX + int(cos(agentDir * (pi / 2)))
+                nextY = agentY - int(sin(agentDir * (pi / 2)))
 
-            nextX = agentX + int(cos(agentDir * (pi / 2)))
-            nextY = agentY - int(sin(agentDir * (pi / 2)))
+                if 0 <= nextX <= 49 and 0 <= nextY <= 49:
+                    self.__fsPlayers[agentName]["x"] = nextX
+                    self.__fsPlayers[agentName]["y"] = nextY
+                    self.__fsMap[agentY][agentX] = 2
 
-            if 0 <= nextX <= 49 and 0 <= nextY <= 49:
-                fsMap[agentY][agentX] = 2
-                self.__agent.rulePlayer(agentName, "x", nextX)
-                self.__agent.rulePlayer(agentName, "y", nextY)
-
-        #self.__agent.ruleArena("map", fsMap)
+    def setGameData(self, fsMap, fsPlayers):
+        self.__fsMap = fsMap
+        self.__fsPlayers = fsPlayers
 
     def update(self):
+        if not self.__fsMap or self.__fsPlayers is None:
+            return
+
         self.updateAgentPosition()
         self.__agent.update()

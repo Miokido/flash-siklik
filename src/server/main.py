@@ -1,42 +1,49 @@
 import time
+from cfg import *
 
+from GridArbiter import GridArbiter
 from DeathArbiter import DeathArbiter
 from PlayerMovesArbiter import PlayerMovesReferee
-from GridArbiter import GridArbiter
-from TimerReferee import TimerReferee
-from cfg import *
+
+
+def getGameInfos():
+    return gridRefereeAgent.map, gridRefereeAgent.range
+
 
 gridReferee = GridArbiter(gridRefereeAgent)
 deathReferee = DeathArbiter(deathRefereeAgent)
 playerMovesReferee = PlayerMovesReferee(playerMovesRefereeAgent)
-timerReferee = TimerReferee(timerRefereeAgent)
 
-
-def getAlivePlayers():
-    for playerName, playerAttributes in gridRefereeAgent.players:
-        ...
-
-
-gridReferee.initGrid()
-fsMap = gridReferee.getMap()
+(fsMap, fsPlayers) = gridReferee.initGrid()
 
 
 def main():
-    gridReferee.update()
-    time.sleep(3)
-
     i = 0
+    global fsMap, fsPlayers
+
+    print(fsPlayers)
+
+    print("C'est parti")
 
     while True:
-        time.sleep(0.3)
         playerMovesReferee.update()
         deathReferee.update()
 
-        if i == 4:
+        if i % 2 == 0 and i != 10:
             gridReferee.ruleArena("map", fsMap)
+            for agentName, agentAttributes in fsPlayers.items():
+                gridRefereeAgent.rulePlayer(agentName, "x", agentAttributes["x"])
+                gridRefereeAgent.rulePlayer(agentName, "y", agentAttributes["y"])
+        elif i == 10:
+            (fsMap, fsPlayers) = getGameInfos()
+            gridReferee.setGameData(fsMap, fsPlayers)
+            deathReferee.setGameData(fsMap, fsPlayers)
+            playerMovesReferee.setGameData(fsMap, fsPlayers)
             i = 0
-        else:
-            i = i + 1
+
+        i = i + 1
+
+        gridRefereeAgent.update()
 
 
 main()

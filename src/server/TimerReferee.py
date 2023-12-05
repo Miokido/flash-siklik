@@ -41,6 +41,8 @@ class ITimeReferee:
 
 class TimerReferee(ITimeReferee):
     def __init__(self, agent: Agent, duration: int = 300) -> None:
+        self.__fsMap = None
+        self.__fsPlayers = None
         self.__pytactxAgent = agent
         self.__duration = duration
         self.__startTimestamp = None
