@@ -1,31 +1,40 @@
 {
-  "arenaRules": {
-    "gridColumns": 50,
-    "gridRows": 50,
-    "bgImg": "../res/flash.png",
-    "bgColor": [0, 0, 0, 1],
-    "mapFriction": [0.0, 0.0, 0.0, 1.0],
-    "mapImgs": ["", "rgba(255,55,223, 1)", "rgba(0, 125, 153, 1)", ""],
-    "dtFire": [300, 450],
-    "hitFire": [0, 100],
-    "profiles": ["default", "biker", "referee"],
-    "pIcons": ["", "🖌️", "👀"],
-    "pImgs": ["ova.svg", "ova.svg", "ball.svg"],
-    "range": [3, 3, 0],
-    "dtDir": [300, 300, 10],
-    "dtMove": [300, 450, 10],
-    "weapon": [0, 0, 1],
-    "fxFire": [false, false, false],
-    "hitCollision": [10, 10, 0],
-    "dxMax": [3, 3, 100],
-    "dyMax": [3, 3, 100],
-    "lifeIni": [1, 1, 0],
-    "ammoIni": [0, 0, 0],
-    "invisible": [false, false, true],
-    "invincible": [false, false, true],
-    "infiniteAmmo": [false, false, true],
-    "collision": [true, true, false],
-    "teamNb": 0,
-    "spawnArena": { "x": [13, 3, 23], "y": [6, 3, 9], "r": [10, 3, 3] }
+  "players": {
+    "Bot 1": {
+      "x": 13,
+      "y": 10,
+      "dir": 3,
+      "color": [100, 0, 0]
+    },
+    "Bot 2": {
+      "x": 26,
+      "y": 10,
+      "dir": 3,
+      "color": [200, 0, 0]
+    },
+    "Bot 3": {
+      "x": 39,
+      "y": 10,
+      "dir": 3,
+      "color": [0, 100, 0]
+    },
+    "Bot 4": {
+      "x": 39,
+      "y": 30,
+      "dir": 1,
+      "color": [0, 100, 100]
+    },
+    "Bot 5": {
+      "x": 39,
+      "y": 20,
+      "dir": 1,
+      "color": [100, 100, 100]
+    },
+    "Bot 6": {
+      "x": 13,
+      "y": 30,
+      "dir": 1,
+      "color": [200, 200, 200]
+    }
   }
 }

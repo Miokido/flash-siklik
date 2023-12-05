@@ -1,10 +1,15 @@
 import j2l.pytactx.agent as pytactx
+import os
+import json
+import time
 
-#with open(os.path.join(__fileDir__, 'serverRules.json')) as json_data:
-#serverRulesdict = json.load(json_data)
+__fileDir__ = "./"
+playerRulesdict = dict()
 
+with open(os.path.join(__fileDir__, 'PlayerRules.json')) as json_data:
+  playerRulesdict = json.load(json_data)
 
-class MainArbiter:
+class GridArbiter:
 
   def __init__(self):
     self.__agent = pytactx.Agent(playerId=input("playerId"),
@@ -13,33 +18,41 @@ class MainArbiter:
                                  password="demo",
                                  server="mqtt.jusdeliens.com",
                                  verbosity=2)
+    self.__agent.rulePlayer("invisible", True)
+    self.__agent.rulePlayer("invincible", True)
 
   def ruleArena(self, key, value):
     self.__agent.ruleArena(key, value)
 
   def createPlayers(self):
-    for player, playerAttributes in rulesFile["playersRules"].items():
+    for player, playerAttributes in playerRulesdict["players"].items():
       for attributeKey, attributeValue in playerAttributes.items():
-        self.__pytactxAgent.rulePlayer(player, attributeKey, attributeValue)
+        self.__agent.rulePlayer(player, attributeKey, attributeValue)
 
+  def update(self):
+    self.initGrid()
 
-def initGrid():
-  mainArbiter = MainArbiter()
-  mainArbiter.ruleArena("bgImg", "/path/")
-  mainArbiter.ruleArena("gridColumns", 50)
-  mainArbiter.ruleArena("gridRows", 50)
-  mainArbiter.ruleArena("mapFriction", 0)
-  #mainArbiter.ruleArena("bgImg", "")
+  def getRange(self):
+    return self.__agent.range
 
-  coords = [[13, 10], [26, 10], [39, 10], [13, 20], [39, 20], [13, 30],
-            [39, 30], [13, 40], [26, 40], [39, 40]]
-  for coord in coords:
-    ...
-    #self.__agent.pose(x, y, orientation)
-  #positionner joueur
-  #appeler ObjectArbiter
-  #appeler TimerArbiter
-  #mainArbiter.
+  def clearPlayers(self):
+    self.__agent.ruleArena("reset", True)
 
+  def clearPlayer(self, name):
+    for player, playerAttributes in self.__agent.range.items():
+      self.__agent.rulePlayer(player, 'life', 0)
+      self.__agent.ruleArena('delPlayer', [player])
 
-initGrid()
+  def initGrid(self):
+    self.clearPlayers()
+    self.__agent.update()
+    time.sleep(0.3)
+    self.ruleArena(
+      "bgImg",
+      "https://raw.githubusercontent.com/Miokido/flash-siklik/main/res/background_grid.png"
+    )
+    self.ruleArena("gridColumns", 50)
+    self.ruleArena("gridRows", 50)
+    self.ruleArena("mapFriction", 0)
+    self.createPlayers()
+    self.__agent.update()
