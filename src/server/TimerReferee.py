@@ -1,7 +1,7 @@
 from j2l.pytactx.agent import Agent
 
 
-class ITimeArbiter:
+class ITimeReferee:
     def start(self) -> None:
         """
         Start the timer of the game by saving timestamp
@@ -39,7 +39,7 @@ class ITimeArbiter:
         ...
 
 
-class TimerArbiter(ITimeArbiter):
+class TimerReferee(ITimeReferee):
     def __init__(self, agent: Agent, duration: int = 300) -> None:
         self.__pytactxAgent = agent
         self.__duration = duration

@@ -1,49 +1,38 @@
-import time
 from j2l.pytactx.agent import Agent
 from cfg import *
 from math import sin, cos, pi
 
-referee = Agent(
-    playerId=playerId,
-    arena=arena,
-    username=username,
-    password=password,
-    server=server,
-    verbosity=verbosity
-)
 
-agentsStreaks = {}
+class IPlayerMovesReferee:
+    def updateAgentPosition(self):
+        ...
 
 
-def updateAgentPosition():
-    """
-    Update player positions and place a wall behind them
-    """
-    global agentsStreaks
+class PlayerMovesReferee(IPlayerMovesReferee):
+    def __init__(self, agent):
+        self.__agent = agent
+        self.__agentsStreaks = {}
 
-    fsMap = referee.map
+    def updateAgentPosition(self):
+        """
+        Update player positions and place a wall behind them
+        """
+        fsMap = self.__agent.map
 
-    for agentName, agentAttributes in referee.range.items():
-        agentDir = agentAttributes["dir"]
-        agentX = agentAttributes["x"]
-        agentY = agentAttributes["y"]
+        for agentName, agentAttributes in self.__agent.range.items():
+            agentDir = agentAttributes["dir"]
+            agentX = agentAttributes["x"]
+            agentY = agentAttributes["y"]
 
-        nextX = agentX + int(cos(agentDir * (pi / 2)))
-        nextY = agentY + int(sin(agentDir * (pi / 2)))
+            nextX = agentX + int(cos(agentDir * (pi / 2)))
+            nextY = agentY + int(sin(agentDir * (pi / 2)))
 
-        agentsStreaks[agentName].append((nextX, nextY))
-        fsMap[agentY][agentX] = 2
+            self.__agentsStreaks[agentName].append((nextX, nextY))
+            fsMap[agentY][agentX] = 2
 
-        referee.rulePlayer(agentName, "x", nextX)
-        referee.rulePlayer(agentName, "y", nextY)
-        referee.ruleArena("map", fsMap)
+            self.__agent.rulePlayer(agentName, "x", nextX)
+            self.__agent.rulePlayer(agentName, "y", nextY)
+            self.__agent.ruleArena("map", fsMap)
 
-
-def main():
-    while True:
-        updateAgentPosition()
-        time.sleep(0.3)
-        referee.update()
-
-
-main()
+    def update(self):
+        self.update()

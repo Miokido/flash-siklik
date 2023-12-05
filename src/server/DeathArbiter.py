@@ -1,10 +1,8 @@
+from j2l.pytactx.agent import Agent
 from src.api.fs import Vehicle
 
 
 class IDeathArbiter:
-    def __init__(self):
-        pass
-
     def isDead(self, vehicle: Vehicle):
         """
             this method returns true if the vehicle is dead
@@ -21,7 +19,7 @@ class IDeathArbiter:
         """
         pass
 
-    def checkIsDeathElseKill(self, vehicle: Vehicle, map:[[],[]]):
+    def checkIsDeathElseKill(self, vehicle: Vehicle, map: [[], []]):
         """
             this method checks if the vehicle is dead and kills it if it is not
             :param vehicle: Vehicle
@@ -29,9 +27,13 @@ class IDeathArbiter:
         """
         pass
 
+    def update(self):
+        pass
+
+
 class DeathArbiter(IDeathArbiter):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, agent):
+        self.__agent = agent
 
     def isDead(self, vehicle: Vehicle):
         """
@@ -49,12 +51,16 @@ class DeathArbiter(IDeathArbiter):
         """
         vehicle.life = 0
 
-    def checkIsDeathElseKill(self, vehicle: Vehicle, map:[[],[]]):
+    def checkIsDeathElseKill(self, vehicle: Vehicle, map: [[], []]):
         """
             this method checks if the vehicle is dead and kills it if it is not
             :param vehicle: Vehicle
             :return: void
         """
         if self.isDead(vehicle) is False:
-            if (map[vehicle.x][vehicle.y] == 2 or map[vehicle.x][vehicle.y] == 1) and vehicle.isGhost() is False and vehicle.hasShield() is False:
+            if ((map[vehicle.x][vehicle.y] == 2 or map[vehicle.x][vehicle.y] == 1)
+                    and vehicle.isGhost() is False and vehicle.hasShield() is False):
                 self.killVehicle(vehicle)
+
+    def update(self):
+        self.__agent.update()
