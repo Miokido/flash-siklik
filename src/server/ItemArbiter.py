@@ -41,3 +41,16 @@ class ItemArbiter(IItemArbiter):
             self.__fsMap[x][y] = 3
         else:
             self.spawnItem()
+
+    def update(self):
+        for player in self.__fsPlayers:
+            if self.__fsMap[player.x][player.y] == 3:
+                item = randint(0, 4)
+                if item == 0:
+                    player.addItem('boost')
+                if item == 1:
+                    player.addItem('superBoost')
+                if item == 2:
+                    player.addItem('ghost')
+                if item == 3:
+                    player.addItem('shield')

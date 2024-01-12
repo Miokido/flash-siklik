@@ -14,7 +14,7 @@ def getGameInfos():
 gridReferee = GridArbiter(gridRefereeAgent)
 deathReferee = DeathArbiter(deathRefereeAgent)
 playerMovesReferee = PlayerMovesReferee(playerMovesRefereeAgent)
-itemArbiter = ItemArbiter(itemRefereeAgent)
+itemReferee = ItemArbiter(itemRefereeAgent)
 
 def main():
     i = 0
@@ -31,9 +31,10 @@ def main():
                     nbItems = nbItems + 1
 
         if nbItems < 5:
-            itemArbiter.spawnItem()
+            itemReferee.spawnItem()
         playerMovesReferee.update()
         deathReferee.update()
+        itemReferee.update()
 
         if i % 2 == 0 and i != 10:
             gridReferee.ruleArena("map", fsMap)
