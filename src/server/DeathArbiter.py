@@ -1,3 +1,6 @@
+from cfg import globalMap
+
+
 class IDeathArbiter:
     def killVehicle(self, agent):
         """
@@ -14,8 +17,6 @@ class IDeathArbiter:
 class DeathArbiter(IDeathArbiter):
     def __init__(self, agent):
         self.__agent = agent
-        self.__fsMap = None
-        self.__fsPlayers = None
 
     def killVehicle(self, agentName):
         """
@@ -24,25 +25,18 @@ class DeathArbiter(IDeathArbiter):
             :return: void
         """
         self.__agent.rulePlayer(agentName, 'life', 0)
-        #self.__agent.ruleArena('delPlayer', [agentName])
+        # self.__agent.ruleArena('delPlayer', [agentName])
 
     def checkForAgentDeletion(self):
-        for agentName, agentAttributes in self.__fsPlayers.items():
+        for agentName, agentAttributes in items():
             agentX = agentAttributes["x"]
             agentY = agentAttributes["y"]
 
-            case = self.__fsMap[agentY][agentX]
+            case = globalMap[agentY][agentX]
 
             if case == 2:
                 self.killVehicle(agentName)
 
-    def setGameData(self, fsMap, fsPlayers):
-        self.__fsMap = fsMap
-        self.__fsPlayers = fsPlayers
-
-    def update(self):
-        if self.__fsMap is None:
-            return
-
+    def update(self, enableSleep=True):
         self.checkForAgentDeletion()
-        self.__agent.update()
+        self.__agent.update(enableSleep)
