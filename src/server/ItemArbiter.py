@@ -30,10 +30,6 @@ class ItemArbiter(IItemArbiter):
         self.__fsMap = None
         self.__fsPlayers = None
 
-    def useItem(self, agent, item: str) -> None:
-        if item in agent.getItems():
-            agent.getItems().remove(item)
-
     def setGameData(self, fsMap, fsPlayers):
         self.__fsMap = fsMap
         self.__fsPlayers = fsPlayers

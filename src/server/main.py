@@ -4,6 +4,7 @@ from cfg import *
 from GridArbiter import GridArbiter
 from DeathArbiter import DeathArbiter
 from PlayerMovesArbiter import PlayerMovesReferee
+from ItemArbiter import ItemArbiter
 
 
 def getGameInfos():
@@ -13,7 +14,7 @@ def getGameInfos():
 gridReferee = GridArbiter(gridRefereeAgent)
 deathReferee = DeathArbiter(deathRefereeAgent)
 playerMovesReferee = PlayerMovesReferee(playerMovesRefereeAgent)
-
+itemArbiter = ItemArbiter(itemRefereeAgent)
 
 def main():
     i = 0
@@ -23,6 +24,14 @@ def main():
     print("C'est parti !")
 
     while True:
+        nbItems = 0
+        for line in fsMap:
+            for tile in line:
+                if tile == 3:
+                    nbItems = nbItems + 1
+
+        if nbItems < 5:
+            itemArbiter.spawnItem()
         playerMovesReferee.update()
         deathReferee.update()
 
