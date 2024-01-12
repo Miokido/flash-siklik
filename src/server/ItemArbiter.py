@@ -45,7 +45,7 @@ class ItemArbiter(IItemArbiter):
     def update(self):
         for player in self.__fsPlayers:
             if self.__fsMap[player.x][player.y] == 3:
-                item = randint(0, 4)
+                item = randint(0, 3)
                 if item == 0:
                     player.addItem('boost')
                 if item == 1:
