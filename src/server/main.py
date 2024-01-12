@@ -14,16 +14,13 @@ gridReferee = GridArbiter(gridRefereeAgent)
 deathReferee = DeathArbiter(deathRefereeAgent)
 playerMovesReferee = PlayerMovesReferee(playerMovesRefereeAgent)
 
-(fsMap, fsPlayers) = gridReferee.initGrid()
-
 
 def main():
     i = 0
-    global fsMap, fsPlayers
 
-    print(fsPlayers)
+    (fsMap, fsPlayers) = gridReferee.initGrid()
 
-    print("C'est parti")
+    print("C'est parti !")
 
     while True:
         playerMovesReferee.update()

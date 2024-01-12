@@ -24,7 +24,7 @@ class DeathArbiter(IDeathArbiter):
             :return: void
         """
         self.__agent.rulePlayer(agentName, 'life', 0)
-        self.__agent.ruleArena('delPlayer', [agentName])
+        #self.__agent.ruleArena('delPlayer', [agentName])
 
     def checkForAgentDeletion(self):
         for agentName, agentAttributes in self.__fsPlayers.items():
@@ -32,8 +32,6 @@ class DeathArbiter(IDeathArbiter):
             agentY = agentAttributes["y"]
 
             case = self.__fsMap[agentY][agentX]
-
-            print(agentName + " : " + str(case))
 
             if case == 2:
                 self.killVehicle(agentName)

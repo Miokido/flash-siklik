@@ -64,4 +64,7 @@ class GridArbiter:
         self.createPlayers()
         self.__agent.update()
 
+        print("Les paramètres de la carte ont étés envoyés... Pause de 3 secondes...")
+        time.sleep(3)
+
         return self.__agent.map, self.__agent.range
