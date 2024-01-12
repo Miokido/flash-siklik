@@ -46,6 +46,7 @@ def main():
             gridReferee.setGameData(fsMap, fsPlayers)
             deathReferee.setGameData(fsMap, fsPlayers)
             playerMovesReferee.setGameData(fsMap, fsPlayers)
+            itemReferee.setGameData(fsMap, fsPlayers)
             i = 0
 
         i = i + 1

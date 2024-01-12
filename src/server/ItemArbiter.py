@@ -43,6 +43,8 @@ class ItemArbiter(IItemArbiter):
             self.spawnItem()
 
     def update(self):
+        if self.__fsMap is None:
+            return
         for player in self.__fsPlayers:
             if self.__fsMap[player.x][player.y] == 3:
                 item = randint(0, 3)
