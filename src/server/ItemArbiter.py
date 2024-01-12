@@ -54,4 +54,4 @@ class ItemArbiter(IItemArbiter):
                     player.addItem('ghost')
                 if item == 3:
                     player.addItem('shield')
-                player.update()
+                self.__agent.update()
