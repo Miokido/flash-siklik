@@ -35,6 +35,8 @@ class ItemArbiter(IItemArbiter):
         self.__fsPlayers = fsPlayers
 
     def spawnItem(self) -> None:
+        if self.__fsMap is None:
+            return
         x = randint(0, 49)
         y = randint(0, 49)
         if self.__fsMap[x][y] == 0:
