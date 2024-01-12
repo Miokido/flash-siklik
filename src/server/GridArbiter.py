@@ -61,6 +61,7 @@ class GridArbiter:
         self.ruleArena("gridColumns", 50)
         self.ruleArena("gridRows", 50)
         self.ruleArena("mapFriction", 0)
+        self.ruleArena("maxPlayers", 4)
         self.createPlayers()
         self.__agent.update()
 
