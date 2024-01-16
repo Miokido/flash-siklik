@@ -12,6 +12,6 @@ sys.path.append(__j2ldir__)
 class TestServer(object):
 
     """
-        test de la classe vehicule
+        test serveur
     """
 
