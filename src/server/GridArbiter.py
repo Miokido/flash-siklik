@@ -1,3 +1,8 @@
+import copy
+
+from cfg import globalMap
+
+
 import os
 import json
 import time
@@ -5,20 +10,17 @@ import time
 __fileDir__ = "./"
 playerRulesDict = dict()
 
-with open(os.path.join(__fileDir__, 'serverRules.json')) as json_data:
-    playerRulesDict = json.load(json_data)
-
-
 class GridArbiter:
     def __init__(self, agent):
         self.__agent = agent
         self.__agent.rulePlayer(agentId=agent.robotId, attributeName="invisible", attributeValue=True)
         self.__agent.rulePlayer(agentId=agent.robotId, attributeName="invincible", attributeValue=True)
-        self.__fsMap = None
-        self.__fsPlayers = None
 
     def ruleArena(self, key, value):
-        self.__agent.ruleArena(key, value)
+        self.__agent.ruleArena(attributeName=key, attributeValue=value)
+
+    def rulePlayer(self, agentId, key, value):
+        self.__agent.rulePlayer(agentId=agentId, attributeName=key, attributeValue=value)
 
     def createPlayers(self):
         """
@@ -26,36 +28,42 @@ class GridArbiter:
         """
         for player, playerAttributes in playerRulesDict["players"].items():
             for attributeKey, attributeValue in playerAttributes.items():
-                self.__agent.rulePlayer(player, attributeKey, attributeValue)
+                self.rulePlayer(player, attributeKey, attributeValue)
+
+        print("createPlayers")
+        self.__agent.update(False)
+        time.sleep(3)
 
     def getRange(self):
         return self.__agent.range
 
     def clearPlayers(self):
-        self.__agent.ruleArena("reset", True)
-
-    def clearPlayer(self, name):
-        for player, playerAttributes in self.__agent.range.items():
-            self.__agent.rulePlayer(player, 'life', 0)
-            self.__agent.ruleArena('delPlayer', [player])
+        self.ruleArena("reset", True)
+        self.__agent.update(False)
+        print("Reseting players...")
+        time.sleep(3)
 
     def clearMap(self):
-        if self.__fsMap is None:
-            return
+        map = copy.deepcopy(self.__agent.map)
 
-        for i in range(len(self.__fsMap)):
-            for j in range(len(self.__fsMap[i])):
-                self.__fsMap[i][j] = 0
-        self.__agent.ruleArena("map", self.__fsMap)
+        for i in range(len(map)):
+            for j in range(len(map[i])):
+                map[i][j] = 0
 
-    def setGameData(self, fsMap, fsPlayers):
-        self.__fsMap = fsMap
-        self.__fsPlayers = fsPlayers
+        self.ruleArena("map", map)
+
+        self.__agent.update(False)
+        print("Cleaning map...")
+        time.sleep(3)
 
     def initGrid(self):
+        global playerRulesDict
+
+        with open(os.path.join(__fileDir__, 'serverRules.json')) as json_data:
+            playerRulesDict = json.load(json_data)
+
         self.clearPlayers()
         self.clearMap()
-        self.__agent.update()
 
         self.ruleArena(
             "bgImg",
@@ -64,10 +72,16 @@ class GridArbiter:
         self.ruleArena("gridColumns", 50)
         self.ruleArena("gridRows", 50)
         self.ruleArena("mapFriction", 0)
-        self.createPlayers()
-        self.__agent.update()
+        self.ruleArena("maxPlayers", 4)
 
-        print("Les paramètres de la carte ont étés envoyés... Pause de 3 secondes...")
+        self.__agent.update(False)
+        print("Setting map parameters...")
         time.sleep(3)
+        self.__agent.update(False)
 
-        return self.__agent.map, self.__agent.range
+        self.createPlayers()
+
+        self.__agent.update(False)
+        print("Creating players...")
+        time.sleep(3)
+        self.__agent.update(False)
