@@ -11,8 +11,6 @@ playerRulesDict = dict()
 class GridArbiter:
     def __init__(self, agent):
         self.__agent = agent
-        self.__agent.rulePlayer(agentId=agent.robotId, attributeName="invisible", attributeValue=True)
-        self.__agent.rulePlayer(agentId=agent.robotId, attributeName="invincible", attributeValue=True)
 
     def ruleArena(self, key, value):
         self.__agent.ruleArena(attributeName=key, attributeValue=value)
@@ -24,11 +22,17 @@ class GridArbiter:
         return self.__agent.range
 
     def updateAndPull(self):
+        """
+        Updates the game, waits 3 seconds and pull data from server
+        """
         self.__agent.update(False)
         time.sleep(3)
         self.__agent.update(False)
 
     def clearPlayers(self):
+        """
+        Kill and delete all players
+        """
         print("Resetting players...")
 
         for playerName, playerAttributes in self.__agent.range.items():
@@ -38,7 +42,10 @@ class GridArbiter:
         self.ruleArena("reset", True)
         self.updateAndPull()
 
-    def clearMap(self):
+    def cleanMap(self):
+        """
+        Reset all map cells
+        """
         print("Cleaning map...")
         map = copy.deepcopy(self.__agent.map)
 
@@ -47,20 +54,18 @@ class GridArbiter:
                 map[i][j] = 0
 
         self.ruleArena("map", map)
+        self.ruleArena("players", [])
 
         self.updateAndPull()
 
     def setMap(self):
+        """
+        Sets the map settings
+        """
         print("Setting map parameters...")
 
-        self.ruleArena(
-            "bgImg",
-            "https://raw.githubusercontent.com/Miokido/flash-siklik/main/res/background_grid.png"
-        )
-        self.ruleArena("gridColumns", 50)
-        self.ruleArena("gridRows", 50)
-        self.ruleArena("mapFriction", 0)
-        self.ruleArena("maxPlayers", 5)
+        for ruleName, ruleAttribute in playerRulesDict["arena"].items():
+            self.ruleArena(ruleName, ruleAttribute)
 
         self.updateAndPull()
 
@@ -79,15 +84,11 @@ class GridArbiter:
     def initGrid(self):
         global playerRulesDict
 
-        self.ruleArena("spreadRange", [360, 360, 360, 360, 360])
-        self.ruleArena("range", [100, 100, 100, 100])
-        self.updateAndPull()
-
-        with open(os.path.join(__fileDir__, 'serverRules.json')) as json_data:
+        with open(os.path.join(__fileDir__, 'gameRules.json')) as json_data:
             playerRulesDict = json.load(json_data)
 
         self.clearPlayers()
-        self.clearMap()
+        self.cleanMap()
         self.setMap()
         self.createPlayers()
 

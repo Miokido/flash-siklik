@@ -13,6 +13,8 @@ gridReferee = GridArbiter(agent)
 deathReferee = DeathArbiter(agent)
 playerMovesReferee = PlayerMovesReferee(agent)
 itemReferee = ItemArbiter(agent)
+
+
 def main():
     global gridReferee
 

@@ -1,0 +1,37 @@
+{
+  "arena": {
+    "spreadRange": [360, 360, 360, 360, 360],
+    "range": [100, 100, 100, 100],
+    "bgImg": "https://raw.githubusercontent.com/Miokido/flash-siklik/main/res/background_grid.png",
+    "gridColumns": 50,
+    "gridRow": 50,
+    "mapFriction": 0,
+    "maxPlayers": 5
+  },
+  "players": {
+    "Nikola": {
+      "x": 5,
+      "y": 0,
+      "dir": 3,
+      "color": [100, 0, 0]
+    },
+    "Newton": {
+      "x": 44,
+      "y": 0,
+      "dir": 3,
+      "color": [0, 100, 0]
+    },
+    "Euler": {
+      "x": 5,
+      "y": 49,
+      "dir": 1,
+      "color": [0, 100, 100]
+    },
+    "Euclide": {
+      "x": 44,
+      "y": 49,
+      "dir": 1,
+      "color": [200, 200, 200]
+    }
+  }
+}
