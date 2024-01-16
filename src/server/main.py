@@ -33,16 +33,12 @@ def main():
         # itemReferee.spawnItem()
         playerMovesReferee.update(False)
 
-        if True:
+        if i < 10:
             gridReferee.ruleArena("map", cfg.globalMap)
-            for agentName, agentAttributes in cfg.globalPlayers.items():
-                agent.rulePlayer(agentName, "x", agentAttributes["x"])
-                agent.rulePlayer(agentName, "y", agentAttributes["y"])
             i = 0
-        elif 10:
-            #cfg.globalMap = copy.deepcopy(agent.map)
-            #cfg.globalMap = copy.deepcopy(agent.range)
-            pass
+        elif i == 10:
+            cfg.globalMap = copy.deepcopy(agent.map)
+            cfg.globalPlayers = copy.deepcopy(agent.range)
 
         i = i + 1
 

@@ -79,6 +79,10 @@ class GridArbiter:
     def initGrid(self):
         global playerRulesDict
 
+        self.ruleArena("spreadRange", [360, 360, 360, 360, 360])
+        self.ruleArena("range", [100, 100, 100, 100])
+        self.updateAndPull()
+
         with open(os.path.join(__fileDir__, 'serverRules.json')) as json_data:
             playerRulesDict = json.load(json_data)
 
@@ -88,4 +92,4 @@ class GridArbiter:
         self.createPlayers()
 
         cfg.globalMap = self.__agent.map
-        cfg.globalPlayers = self.getRange()
+        cfg.globalPlayers = self.__agent.range

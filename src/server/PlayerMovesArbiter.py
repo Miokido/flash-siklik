@@ -16,7 +16,7 @@ class PlayerMovesReferee(IPlayerMovesReferee):
         """
         Update player positions and place a wall behind them
         """
-        for agentName, agentAttributes in self.__agent.range.items():
+        for agentName, agentAttributes in cfg.globalPlayers.items():
             if agentAttributes["life"] > 0:
                 agentDir = agentAttributes["dir"]
                 agentX = agentAttributes["x"]
@@ -32,4 +32,4 @@ class PlayerMovesReferee(IPlayerMovesReferee):
 
     def update(self, enableSleep=True):
         self.updateAgentPosition()
-        self.__agent.update(enableSleep)
+        #self.__agent.update(enableSleep)
