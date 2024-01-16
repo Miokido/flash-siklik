@@ -1,12 +1,11 @@
 import j2l.pytactx.agent as pytactx
 
-agent = pytactx.Agent(playerId=input("👾 id: "),
-						arena=input("🎲 arena: "),
+agent = pytactx.Agent(playerId="demo",
+						arena="flashsiklik",
 						username="demo",
-						password=input("🔑 password: "),
+						password="demo",
 						server="mqtt.jusdeliens.com",
 						verbosity=2)
 
 while True:
 	agent.update()
-	agent.lookAt((agent.dir + 1) % 4)
