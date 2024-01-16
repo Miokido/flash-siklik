@@ -1,6 +1,7 @@
 import copy
 
 import cfg
+import time
 from cfg import *
 
 from GridArbiter import GridArbiter
@@ -8,20 +9,16 @@ from DeathArbiter import DeathArbiter
 from PlayerMovesArbiter import PlayerMovesReferee
 from ItemArbiter import ItemArbiter
 
-gridReferee = GridArbiter(gridRefereeAgent)
-deathReferee = DeathArbiter(gridRefereeAgent)
-playerMovesReferee = PlayerMovesReferee(gridRefereeAgent)
-itemReferee = ItemArbiter(gridRefereeAgent)
-
-
+gridReferee = GridArbiter(agent)
+deathReferee = DeathArbiter(agent)
+playerMovesReferee = PlayerMovesReferee(agent)
+itemReferee = ItemArbiter(agent)
 def main():
     global gridReferee
 
     i = 0
 
     gridReferee.initGrid()
-
-    cfg.globalMap = gridRefereeAgent.map
 
     print("C'est parti !")
 
@@ -38,16 +35,19 @@ def main():
 
         if True:
             gridReferee.ruleArena("map", cfg.globalMap)
-            for agentName, agentAttributes in fsPlayers.items():
-                gridRefereeAgent.rulePlayer(agentName, "x", agentAttributes["x"])
-                gridRefereeAgent.rulePlayer(agentName, "y", agentAttributes["y"])
+            for agentName, agentAttributes in cfg.globalPlayers.items():
+                agent.rulePlayer(agentName, "x", agentAttributes["x"])
+                agent.rulePlayer(agentName, "y", agentAttributes["y"])
             i = 0
         elif 10:
-            cfg.globalMap = copy.deepcopy(gridRefereeAgent.map)
+            #cfg.globalMap = copy.deepcopy(agent.map)
+            #cfg.globalMap = copy.deepcopy(agent.range)
+            pass
 
         i = i + 1
 
-        gridRefereeAgent.update()
+        agent.update()
+        time.sleep(0.333)
 
 
 main()

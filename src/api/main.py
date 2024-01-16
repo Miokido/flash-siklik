@@ -9,4 +9,5 @@ agent = pytactx.Agent(playerId=input("👾 id: "),
 
 while True:
 	agent.update()
-	agent.lookAt((agent.dir + 1) % 4)
+	print("Agent direction : " + str(agent.dir))
+	print("Agent position : " + str(agent.x) + " ; " + str(agent.y))
