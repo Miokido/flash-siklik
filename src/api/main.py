@@ -11,3 +11,4 @@ while True:
 	agent.update()
 	print("Agent direction : " + str(agent.dir))
 	print("Agent position : " + str(agent.x) + " ; " + str(agent.y))
+	
