@@ -62,7 +62,7 @@ Execution du script d'installation fourni sur la racine du projet.
 - Lorsqu'un agent fonce dans un mur, celui-ci est eliminé
 
 ## 🛣️ Roadmap
-tout.
+[Lien vers le Trello du projet](https://trello.com/b/bkW9SHPB/flash-siklik)
 
 ## 👨‍💻 Auteur(s)
 BELLAN Tristan, CHERUEL Baptiste, DUVAL Theo, BOUCHAUD Hugo
