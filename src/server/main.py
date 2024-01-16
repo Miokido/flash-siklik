@@ -8,12 +8,10 @@ from DeathArbiter import DeathArbiter
 from PlayerMovesArbiter import PlayerMovesReferee
 from ItemArbiter import ItemArbiter
 
-
 gridReferee = GridArbiter(gridRefereeAgent)
 deathReferee = DeathArbiter(gridRefereeAgent)
 playerMovesReferee = PlayerMovesReferee(gridRefereeAgent)
 itemReferee = ItemArbiter(gridRefereeAgent)
-
 
 
 def main():

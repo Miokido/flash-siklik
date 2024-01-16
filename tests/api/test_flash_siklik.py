@@ -13,7 +13,7 @@ from src.api.fs.Vehicle import Vehicle
 class TestFlashSiklikApi(object):
 
     """
-        test de la classe vehicule
+        test vehicle class
     """
     def test_vehicule(self):
         vehiculeTest = Vehicle(1, 1, "test", "test", "test", 1)
