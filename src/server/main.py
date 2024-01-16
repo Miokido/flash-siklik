@@ -1,4 +1,3 @@
-import time
 from cfg import *
 
 from GridArbiter import GridArbiter
@@ -15,6 +14,7 @@ gridReferee = GridArbiter(gridRefereeAgent)
 deathReferee = DeathArbiter(deathRefereeAgent)
 playerMovesReferee = PlayerMovesReferee(playerMovesRefereeAgent)
 itemReferee = ItemArbiter(itemRefereeAgent)
+
 
 def main():
     i = 0

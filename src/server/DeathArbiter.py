@@ -27,6 +27,10 @@ class DeathArbiter(IDeathArbiter):
         #self.__agent.ruleArena('delPlayer', [agentName])
 
     def checkForAgentDeletion(self):
+        """
+        this method check if the agent hit a wall
+        :return: void
+        """
         for agentName, agentAttributes in self.__fsPlayers.items():
             agentX = agentAttributes["x"]
             agentY = agentAttributes["y"]

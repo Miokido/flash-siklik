@@ -21,6 +21,9 @@ class GridArbiter:
         self.__agent.ruleArena(key, value)
 
     def createPlayers(self):
+        """
+        For all players in the rules, create the agent
+        """
         for player, playerAttributes in playerRulesDict["players"].items():
             for attributeKey, attributeValue in playerAttributes.items():
                 self.__agent.rulePlayer(player, attributeKey, attributeValue)

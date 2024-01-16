@@ -35,6 +35,9 @@ class ItemArbiter(IItemArbiter):
         self.__fsPlayers = fsPlayers
 
     def spawnItem(self) -> None:
+        """
+        Spawn an item at regular interval if less than 3 on map
+        """
         x = randint(0, 49)
         y = randint(0, 49)
         if self.__fsMap[x][y] == 0:
